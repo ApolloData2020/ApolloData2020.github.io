@@ -5,28 +5,26 @@
   <title>Apollo Data Analytics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 
-    All styling is in this <style> block for simplicity.
-    You can move it to a separate style.css if you prefer.
-  -->
+  <!-- Inline CSS for simplicity; feel free to split into style.css later -->
   <style>
     /*********************************
-      BASIC THEME VARIABLES
+      GLOBAL VARIABLES
     *********************************/
     :root {
-      --brand-color: #5b21b6;       /* Purple example */
-      --brand-hover: #6d28d9;       /* Slightly lighter purple for hover */
-      --secondary-color: #0070f3;   /* Accent color (e.g., for "Client Login") */
-      --text-color: #fff;           /* For hero text on dark background */
-      --nav-bg: rgba(255,255,255,0.9); /* Navbar background (slightly transparent) */
-      --nav-text-color: #333;       /* Navbar link color */
-      --hero-bg-gradient: linear-gradient(
-          to bottom right,
-          rgba(91, 33, 182, 0.85),
-          rgba(109, 40, 217, 0.7)
-        );
-      --hero-bg-image: url('https://via.placeholder.com/1600x900');
-      /* Replace with your own hero background image if desired */
+      --brand-color: #5b21b6;          /* Main brand color (purple) */
+      --brand-hover: #6d28d9;          /* Lighter purple on hover */
+      --secondary-color: #0070f3;      /* Accent color (Client Login) */
+      --bg-gradient: linear-gradient(
+        135deg, 
+        rgba(91, 33, 182, 0.9), 
+        rgba(109, 40, 217, 0.7)
+      );
+      --bg-light: #f9f9ff;             /* Light background for sections */
+      --text-color: #333;              /* Default text */
+      --heading-color: #111;           /* Headings color */
+      --white: #fff;                   /* White */
+      --max-width: 1200px;            /* Layout width constraint */
+      --box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     /*********************************
@@ -39,152 +37,127 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #ffffff;
-      color: #000;
+      background-color: var(--white);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      display: block;
     }
     a {
       text-decoration: none;
+      color: inherit;
+    }
+    h1, h2, h3 {
+      color: var(--heading-color);
+      margin-bottom: 0.75rem;
     }
 
     /*********************************
-      HEADER + HERO
+      HEADER / NAV / HERO
     *********************************/
-    .header-hero {
+    header {
       position: relative;
-      /* The hero background: gradient + image */
-      background: 
-        var(--hero-bg-gradient),
-        var(--hero-bg-image);
-      background-size: cover;
-      background-position: center;
-      color: var(--text-color);
-
-      /* 
-        Add extra bottom space to accommodate 
-        the angled shape and wave layers.
-      */
-      padding-bottom: 6rem;
-
-      /* Clip-path for angled bottom.
-         Adjust "70%" to change where the angle starts.
-      */
+      background: var(--bg-gradient), 
+                  url('https://via.placeholder.com/1600x900') center/cover no-repeat;
+      color: var(--white);
+      padding-bottom: 6rem; /* space for angled + wave */
       clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
     }
 
-    /*********************************
-      NAVBAR
-    *********************************/
+    /* NAVBAR */
     .navbar {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 1rem 2rem;
-      background-color: var(--nav-bg);
+      background-color: rgba(255,255,255,0.15);
+      /* Slightly translucent nav bar over hero */
+      z-index: 10;
       position: relative;
-      z-index: 10; 
-      /* Ensures it stays above the hero content/waves */
     }
-
     .logo {
       display: flex;
-      flex-direction: row;
       align-items: center;
     }
     .logo a {
-      font-size: 1.5rem;
+      color: var(--white);
       font-weight: bold;
+      font-size: 1.5rem;
       text-transform: uppercase;
-      color: var(--brand-color);
-      margin-right: 0.4rem;
+      margin-right: 0.5rem;
     }
     .logo span {
       font-size: 1rem;
-      color: var(--nav-text-color);
+      opacity: 0.9;
     }
-
     .nav-links {
       list-style: none;
       display: flex;
       gap: 1.5rem;
     }
     .nav-links li a {
-      color: var(--nav-text-color);
       font-weight: 500;
-      transition: color 0.3s ease;
+      color: var(--white);
     }
     .nav-links li a:hover {
-      color: var(--brand-color);
+      color: #e2e2e2;
     }
 
-    /*********************************
-      BUTTON STYLES
-    *********************************/
-    .btn-primary,
-    .btn-secondary {
+    /* BUTTONS */
+    .btn-primary, .btn-secondary {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      border-radius: 0.25rem;
-      text-decoration: none;
+      border-radius: 4px;
+      color: var(--white);
       font-weight: 600;
       transition: background-color 0.3s;
-      color: #fff; 
     }
-
-    /* "Learn More" (primary) */
     .btn-primary {
-      background-color: var(--brand-color);
+      background: var(--brand-color);
     }
     .btn-primary:hover {
-      background-color: var(--brand-hover);
+      background: var(--brand-hover);
     }
-
-    /* "Client Login" (secondary) */
     .btn-secondary {
-      background-color: var(--secondary-color);
+      background: var(--secondary-color);
     }
     .btn-secondary:hover {
-      background-color: rgba(0, 112, 243, 0.8);
+      background: rgba(0,112,243,0.8);
     }
 
-    /*********************************
-      HERO CONTENT
-    *********************************/
+    /* HERO CONTENT */
     .hero-content {
       max-width: 700px;
       margin: 0 auto;
       text-align: center;
-      /* Top/side/bottom spacing inside hero */
       padding: 6rem 2rem 4rem;
       position: relative;
-      z-index: 5; 
-      /* Keep above wave animations */
+      z-index: 5;
     }
     .hero-content h1 {
       font-size: 2.5rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       line-height: 1.2;
     }
     .hero-content p {
       font-size: 1.125rem;
       margin-bottom: 2rem;
-      color: #f0f0f0; 
+      color: #f0f0f0;
     }
 
-    /*********************************
-      ANIMATED WAVES
-    *********************************/
+    /* WAVES */
     .wave-container {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 6rem; 
+      height: 6rem;
       overflow: hidden;
-      /* ensures the waves follow the same angle clip-path as the hero */
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-      z-index: 1; 
+      z-index: 1;
     }
-
     .wave {
       position: absolute;
       bottom: 0;
@@ -197,146 +170,310 @@
     }
     .wave1 {
       background-image: url('https://via.placeholder.com/800x100/ffffff/aaaaaa?text=Wave1');
-      /* Replace with a real transparent wave PNG or SVG */
       z-index: 2;
     }
     .wave2 {
       background-image: url('https://via.placeholder.com/800x100/ffffff/aaaaaa?text=Wave2');
-      animation-duration: 12s; /* slightly different speed for parallax effect */
+      animation-duration: 12s;
       z-index: 1;
     }
-
     @keyframes wave-move {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /*********************************
-      MAIN CONTENT SECTIONS
-      (PLACEHOLDERS TO RESTORE YOUR OLD CONTENT)
+      SECTION WRAPPERS
     *********************************/
-    main {
+    .section {
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 3rem 2rem;
-      max-width: 1100px; 
+      padding: 3rem 1rem;
     }
-    section {
-      margin-bottom: 3rem;
-    }
-    .section-title {
-      margin-bottom: 1.5rem;
+    .section h2 {
+      text-align: center;
       font-size: 2rem;
-      font-weight: bold;
-      text-align: center;
+      margin-bottom: 2rem;
     }
-    .section-content {
-      text-align: center;
-      font-size: 1.125rem;
-      line-height: 1.5;
+    .section p {
+      margin-bottom: 1rem;
+    }
+
+    /* A simple .grid utility for 2-4 column layouts */
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+    /* Adjust columns at breakpoints */
+    @media(min-width: 768px) {
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
 
     /*********************************
-      FOOTER (Optional)
+      SERVICE CARDS / INFO CARDS
+    *********************************/
+    .card {
+      background: var(--white);
+      box-shadow: var(--box-shadow);
+      border-radius: 6px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .card img {
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      max-height: 200px;
+      object-fit: cover;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      color: var(--brand-color);
+    }
+    .card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      color: #444;
+    }
+
+    /* 3 Feature Cards section (bullets) */
+    .bullet-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .bullet-card {
+      background: #fff;
+      box-shadow: var(--box-shadow);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-align: center;
+      min-width: 220px;
+      max-width: 240px;
+    }
+    .bullet-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--brand-color);
+    }
+
+    /* CTA BOX */
+    .cta-box {
+      background: var(--bg-gradient);
+      color: var(--white);
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+    }
+    .cta-box p {
+      max-width: 700px;
+      margin: 0.5rem auto 1rem;
+      color: #f0f0f0;
+    }
+
+    /*********************************
+      FOOTER
     *********************************/
     footer {
       text-align: center;
-      margin: 2rem 0;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
       color: #666;
     }
-
   </style>
 </head>
 <body>
 
-  <!-- HEADER + HERO START -->
-  <header class="header-hero">
-    <!-- NAVIGATION / TOP BAR -->
+  <!-- HEADER / HERO -->
+  <header>
     <nav class="navbar">
       <div class="logo">
-        <!-- Replace with your actual brand/logo if you want -->
         <a href="#">APOLLO</a>
         <span>Data Analytics</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <!-- "Client Login" Button -->
+        <li><a href="#">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <!-- "Client Login" -->
         <li>
           <a href="#" class="btn-secondary">Client Login</a>
         </li>
       </ul>
     </nav>
 
-    <!-- HERO CONTENT -->
     <div class="hero-content">
-      <h1>ACHIEVE SUSTAINABILITY GOALS <br>WHILE DRIVING COST SAVINGS</h1>
+      <h1>Achieve Sustainability Goals While Driving Cost Savings</h1>
       <p>
-        We help businesses make informed decisions that benefit the
-        environment and positively impact their bottom line.
+        We help businesses make informed decisions that benefit the environment
+        and positively impact their bottom line.
       </p>
-      <a href="#" class="btn-primary">Learn More</a>
+      <a href="#services" class="btn-primary">Learn More</a>
     </div>
 
-    <!-- WAVES / ANIMATED BACKGROUND LAYERS -->
+    <!-- WAVES -->
     <div class="wave-container">
       <div class="wave wave1"></div>
       <div class="wave wave2"></div>
     </div>
   </header>
-  <!-- HEADER + HERO END -->
 
-
-  <!-- MAIN CONTENT (PLACEHOLDER FOR YOUR RESTORED SECTIONS) -->
-  <main>
-    <!-- FEATURES SECTION -->
-    <section id="features">
-      <h2 class="section-title">Features</h2>
-      <div class="section-content">
-        <!-- 
-          REPLACE THIS PLACEHOLDER 
-          with the content you had for "Features" 
-          or remove if you don't need it.
-        -->
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vestibulum sodales nulla non ornare interdum.</p>
+  <!-- SERVICE AREAS SECTION -->
+  <section class="section" id="services">
+    <h2>Service Areas We Specialize In</h2>
+    <div class="grid grid-3">
+      <!-- Solid Waste -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x250" alt="Solid Waste">
+        <h3>Solid Waste</h3>
+        <p>
+          We enhance the efficiency of solid waste management by refining 
+          collection and disposal processes, leading to cost savings 
+          and operational optimization.
+        </p>
       </div>
-    </section>
-
-    <!-- PRICING SECTION -->
-    <section id="pricing">
-      <h2 class="section-title">Pricing</h2>
-      <div class="section-content">
-        <!-- 
-          REPLACE THIS PLACEHOLDER
-          with the content you had for "Pricing."
-        -->
-        <p>Choose a plan that fits your business. We offer flexible solutions for startups and enterprises alike.</p>
+      <!-- Recycling -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x250" alt="Recycling">
+        <h3>Recycling</h3>
+        <p>
+          We place a strong emphasis on recycling, collaborating closely 
+          with businesses to design efficient recycling initiatives that 
+          enhance resource reclamation while minimizing waste generation.
+        </p>
       </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-      <h2 class="section-title">Contact Us</h2>
-      <div class="section-content">
-        <!-- 
-          REPLACE THIS PLACEHOLDER 
-          with your contact form or info.
-        -->
-        <p>Have questions? Reach out at <strong>info@apollodata.com</strong> or fill out our form below.</p>
+      <!-- Document Destruction -->
+      <div class="card">
+        <img src="https://via.placeholder.com/400x250" alt="Document Destruction">
+        <h3>Document Destruction</h3>
+        <p>
+          Document Destruction is a critical aspect of safeguarding 
+          sensitive information. Our specialized services prioritize secure 
+          disposal, promoting both security and sustainable resource management.
+        </p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <!-- (OPTIONAL) FOOTER EXAMPLE -->
+  <!-- CUSTOMIZED SOLUTIONS SECTION -->
+  <section class="section" style="background: var(--bg-light);">
+    <h2>
+      We Specialize In Providing Practical, Customized Waste &amp; Recycling Solutions
+      That Integrate Seamlessly With Your Business Operations
+    </h2>
+    <div class="bullet-cards">
+      <div class="bullet-card">
+        <h3>15–35% Average Savings</h3>
+      </div>
+      <div class="bullet-card">
+        <h3>Data-Driven Solutions For Sustainable Initiatives</h3>
+      </div>
+      <div class="bullet-card">
+        <h3>Over 40 Years of Waste &amp; Recycling Experience</h3>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <p>
+        Apollo does not operate on a fee basis. Each engagement’s compensation 
+        operates on a shared savings model based on realized savings as a direct 
+        result of the analysis &amp; implementation of recommendations.
+      </p>
+      <p>This means your company receives a completely risk-free analysis.</p>
+      <a href="#" class="btn-primary">Contact Us To Get Started</a>
+    </div>
+  </section>
+
+  <!-- ADDITIONAL SERVICES / FEATURES -->
+  <section class="section" id="more-services">
+    <h2>More Services</h2>
+    <div class="grid grid-3">
+      <!-- Waste Billing Platform -->
+      <div class="card">
+        <h3>Waste Billing Platform</h3>
+        <p>
+          Effortlessly receive accurate waste vendor invoices that have 
+          undergone thorough audits for your convenience.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+      <!-- Invoice Auditing -->
+      <div class="card">
+        <h3>Invoice Auditing</h3>
+        <p>
+          Our platform detects billing discrepancies between the billed 
+          amount and agreed-upon rates and terms—saving you money.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+      <!-- Best-In-Class Pricing -->
+      <div class="card">
+        <h3>Best-In-Class Pricing</h3>
+        <p>
+          Drawing on extensive industry expertise, we drive down 
+          waste management costs across an entire network of locations.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+      <!-- Sustainable Solutions Consulting -->
+      <div class="card">
+        <h3>Sustainable Solutions Consulting</h3>
+        <p>
+          Achieve efficiency and sustainability objectives while ensuring 
+          ESG compliance through data aggregation and thorough analysis.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+      <!-- Waste Data Compilation & Reporting -->
+      <div class="card">
+        <h3>Waste Data Compilation &amp; Reporting</h3>
+        <p>
+          Consolidate all data streams into one dashboard for transparency 
+          over your waste data and streamlined management.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+      <!-- Contract Negotiation -->
+      <div class="card">
+        <h3>Contract Negotiation</h3>
+        <p>
+          Establish equitable agreements and drive down vendor costs 
+          with sustainable solutions, competitive rates, and annual 
+          price limits for financial security.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+      <!-- Client Assistance Services -->
+      <div class="card">
+        <h3>Client Assistance Services</h3>
+        <p>
+          Streamline customer support by centralizing waste-related 
+          inquiries through a single point of contact.
+        </p>
+        <a href="#" class="btn-primary">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <p>&copy; <span id="current-year"></span> Apollo Data Analytics</p>
+    <p>Telephone: 626.506.7688 &mdash; Email: <a href="mailto:Info@ApolloDataAnalytics.com">Info@ApolloDataAnalytics.com</a></p>
   </footer>
 
-  <!-- (OPTIONAL) TINY SCRIPT TO SET CURRENT YEAR -->
+  <!-- Tiny script to set current year -->
   <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
