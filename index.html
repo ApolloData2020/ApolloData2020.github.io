@@ -1,12 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apollo Data Analytics</title>
-    <script type="module" src="/src/main.jsx"></script>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stripe-Inspired Site</title>
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HEADER / NAV -->
+  <header class="navbar">
+    <div class="logo"><a href="#">MyBrand</a></div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#cta" class="btn-primary">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Transform Your Business</h1>
+      <p>
+        Unleash your potential with our cutting-edge platform, designed to help you grow.
+      </p>
+      <a href="#cta" class="btn-primary">Get Started</a>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features" class="features">
+    <div class="section-header">
+      <h2>Our Features</h2>
+      <p>Everything you need to succeed.</p>
+    </div>
+    <div class="features-grid">
+      <article class="feature-card">
+        <h3>Feature One</h3>
+        <p>Highlight your best-selling solution or unique advantage here.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Feature Two</h3>
+        <p>Explain why customers can’t live without this amazing tool.</p>
+      </article>
+      <article class="feature-card">
+        <h3>Feature Three</h3>
+        <p>Showcase another key offering that sets you apart from the crowd.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section id="pricing" class="pricing">
+    <div class="section-header">
+      <h2>Flexible Pricing</h2>
+      <p>Choose a plan that suits your needs.</p>
+    </div>
+    <div class="pricing-cards">
+      <article class="pricing-card">
+        <h3>Basic</h3>
+        <p class="price">$9/mo</p>
+        <ul>
+          <li>Core Features</li>
+          <li>Email Support</li>
+          <li>5 Projects</li>
+        </ul>
+        <a href="#cta" class="btn-primary">Get Basic</a>
+      </article>
+      <article class="pricing-card">
+        <h3>Pro</h3>
+        <p class="price">$29/mo</p>
+        <ul>
+          <li>All Basic Features</li>
+          <li>Premium Support</li>
+          <li>Unlimited Projects</li>
+        </ul>
+        <a href="#cta" class="btn-primary">Go Pro</a>
+      </article>
+      <article class="pricing-card">
+        <h3>Enterprise</h3>
+        <p class="price">Contact Us</p>
+        <ul>
+          <li>Custom Solutions</li>
+          <li>Dedicated Manager</li>
+          <li>Full Support</li>
+        </ul>
+        <a href="#cta" class="btn-primary">Contact Sales</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact">
+    <div class="section-header">
+      <h2>Get In Touch</h2>
+      <p>We’d love to hear from you.</p>
+    </div>
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </section>
+
+  <!-- CALL-TO-ACTION -->
+  <section id="cta" class="call-to-action">
+    <h2>Ready to Upgrade?</h2>
+    <p>Let’s take your business to the next level.</p>
+    <a href="#contact" class="btn-secondary">Contact Us Today</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; <span id="current-year"></span> MyBrand. All rights reserved.</p>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
 </html>

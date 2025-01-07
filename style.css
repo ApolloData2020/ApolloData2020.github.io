@@ -1,0 +1,233 @@
+/* 
+  Basic styling for a Stripe-inspired, modern look.
+  Tweak colors, fonts, spacing, as you wish.
+*/
+
+/* Global Variables */
+:root {
+    --brand-color: #5b21b6;       /* Purple */
+    --brand-color-hover: #6d28d9; /* Lighter Purple */
+    --text-color: #333;
+    --bg-color: #fff;
+    --light-bg: #f9fafb;
+    --footer-bg: #1f1f1f;
+  }
+  
+  /* Reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+  }
+  
+  /* Container Helper (Optional) */
+  /* .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  } */
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--brand-color);
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s;
+  }
+  
+  .nav-links li a:hover {
+    color: var(--brand-color-hover);
+  }
+  
+  /* Buttons */
+  .btn-primary,
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    color: #fff;
+    background-color: var(--brand-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    background-color: var(--brand-color-hover);
+  }
+  
+  .btn-secondary {
+    background-color: #4338ca;
+  }
+  
+  /* Hero Section */
+  .hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5rem 2rem;
+    background: linear-gradient(
+        135deg,
+        rgba(91, 33, 182, 0.85),
+        rgba(109, 40, 217, 0.7)
+      ),
+      url('https://via.placeholder.com/1500x800');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+  
+  /* Section Headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Features Section */
+  .features {
+    padding: 4rem 2rem;
+    background-color: var(--light-bg);
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .feature-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+  
+  /* Pricing Section */
+  .pricing {
+    padding: 4rem 2rem;
+  }
+  
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .pricing-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    text-align: center;
+  }
+  
+  .pricing-card .price {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    font-weight: bold;
+  }
+  
+  /* Contact Section */
+  .contact {
+    padding: 4rem 2rem;
+    background-color: var(--light-bg);
+  }
+  
+  .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    font: inherit;
+  }
+  
+  /* CTA Section */
+  .call-to-action {
+    background-color: var(--brand-color);
+    color: #fff;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+  
+  .call-to-action h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .call-to-action p {
+    margin-bottom: 2rem;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--footer-bg);
+    color: #aaa;
+    text-align: center;
+    padding: 1.5rem 2rem;
+  }
+  
+  footer p {
+    margin: 0;
+  }
