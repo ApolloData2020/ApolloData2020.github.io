@@ -2,125 +2,278 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stripe-Inspired Site</title>
-  <!-- Link to CSS -->
-  <link rel="stylesheet" href="style.css" />
+  <title>Apollo Data Analytics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- 
+    All styling is in this <style> block for simplicity.
+    In a real project, you might move this to a separate style.css file.
+  -->
+  <style>
+    /*********************************
+      BASIC THEME VARIABLES
+    *********************************/
+    :root {
+      --brand-color: #5b21b6;       /* Purple example */
+      --brand-hover: #6d28d9;       /* Slightly lighter purple */
+      --secondary-color: #0070f3;   /* Accent color (e.g., for "Client Login") */
+      --text-color: #fff;           /* For hero text on dark background */
+      --nav-bg: rgba(255,255,255,0.9); /* Navbar background (slightly transparent) */
+      --nav-text-color: #333;       /* Navbar link color */
+      --hero-bg-gradient: linear-gradient(
+          to bottom right,
+          rgba(91, 33, 182, 0.85),
+          rgba(109, 40, 217, 0.7)
+        );
+      --hero-bg-image: url('https://via.placeholder.com/1600x900');
+      /* Replace with your own hero background image. */
+    }
+
+    /*********************************
+      RESET / GLOBAL STYLES
+    *********************************/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+    }
+    a {
+      text-decoration: none;
+    }
+
+    /*********************************
+      HEADER + HERO
+    *********************************/
+    .header-hero {
+      position: relative;
+      /* The hero background: gradient + image */
+      background: 
+        var(--hero-bg-gradient),
+        var(--hero-bg-image);
+      background-size: cover;
+      background-position: center;
+      color: var(--text-color);
+
+      /* 
+        Add extra bottom space to accommodate the angled shape 
+        and the wave layers.
+      */
+      padding-bottom: 6rem;
+
+      /* Clip-path for angled bottom.
+         Adjust "70%" to change where the angle starts.
+      */
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+    }
+
+    /*********************************
+      NAVBAR
+    *********************************/
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--nav-bg);
+      position: relative;
+      z-index: 10; 
+      /* Ensures it stays above the hero content/waves */
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .logo a {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      color: var(--brand-color);
+      margin-right: 0.4rem;
+    }
+    .logo span {
+      font-size: 1rem;
+      color: var(--nav-text-color);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .nav-links li a {
+      color: var(--nav-text-color);
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .nav-links li a:hover {
+      color: var(--brand-color);
+    }
+
+    /*********************************
+      BUTTON STYLES
+    *********************************/
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+      color: #fff; 
+    }
+
+    /* "Learn More" (primary) */
+    .btn-primary {
+      background-color: var(--brand-color);
+    }
+    .btn-primary:hover {
+      background-color: var(--brand-hover);
+    }
+
+    /* "Client Login" (secondary) */
+    .btn-secondary {
+      background-color: var(--secondary-color);
+    }
+    .btn-secondary:hover {
+      background-color: rgba(0, 112, 243, 0.8);
+    }
+
+    /*********************************
+      HERO CONTENT
+    *********************************/
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      /* Top/side/bottom spacing inside hero */
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      z-index: 5; 
+      /* Keep above wave animations */
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    .hero-content p {
+      font-size: 1.125rem;
+      margin-bottom: 2rem;
+      color: #f0f0f0; 
+    }
+
+    /*********************************
+      ANIMATED WAVES
+    *********************************/
+    .wave-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6rem; 
+      overflow: hidden;
+      /* ensures the waves follow the same angle clip-path as the hero */
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      z-index: 1; 
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      height: 100%;
+      background-repeat: repeat-x;
+      background-position: 0 bottom;
+      opacity: 0.5;
+      animation: wave-move 8s linear infinite;
+    }
+    .wave1 {
+      background-image: url('https://via.placeholder.com/800x100/ffffff/aaaaaa?text=Wave1');
+      /* Replace with a real transparent wave PNG or SVG */
+      z-index: 2;
+    }
+    .wave2 {
+      background-image: url('https://via.placeholder.com/800x100/ffffff/aaaaaa?text=Wave2');
+      animation-duration: 12s; /* slightly different speed for parallax effect */
+      z-index: 1;
+    }
+
+    @keyframes wave-move {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /*********************************
+      FOOTER (Optional)
+    *********************************/
+    footer {
+      text-align: center;
+      margin: 2rem 0;
+      color: #666;
+    }
+
+  </style>
 </head>
 <body>
-  <!-- HEADER / NAV -->
-  <header class="navbar">
-    <div class="logo"><a href="#">MyBrand</a></div>
-    <nav>
+  <!-- HEADER + HERO START -->
+  <header class="header-hero">
+    <!-- NAVIGATION / TOP BAR -->
+    <nav class="navbar">
+      <div class="logo">
+        <!-- Replace with your actual brand/logo -->
+        <a href="#">APOLLO</a>
+        <span>Data Analytics</span>
+      </div>
       <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#cta" class="btn-primary">Sign Up</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <!-- "Client Login" Button -->
+        <li>
+          <a href="#" class="btn-secondary">Client Login</a>
+        </li>
       </ul>
     </nav>
-  </header>
 
-  <!-- HERO SECTION -->
-  <section class="hero">
+    <!-- HERO CONTENT -->
     <div class="hero-content">
-      <h1>Transform Your Business</h1>
+      <h1>ACHIEVE SUSTAINABILITY GOALS <br>WHILE DRIVING COST SAVINGS</h1>
       <p>
-        Unleash your potential with our cutting-edge platform, designed to help you grow.
+        We help businesses make informed decisions that benefit the
+        environment and positively impact their bottom line.
       </p>
-      <a href="#cta" class="btn-primary">Get Started</a>
+      <a href="#" class="btn-primary">Learn More</a>
     </div>
-  </section>
 
-  <!-- FEATURES SECTION -->
-  <section id="features" class="features">
-    <div class="section-header">
-      <h2>Our Features</h2>
-      <p>Everything you need to succeed.</p>
+    <!-- WAVES / ANIMATED BACKGROUND LAYERS -->
+    <div class="wave-container">
+      <div class="wave wave1"></div>
+      <div class="wave wave2"></div>
     </div>
-    <div class="features-grid">
-      <article class="feature-card">
-        <h3>Feature One</h3>
-        <p>Highlight your best-selling solution or unique advantage here.</p>
-      </article>
-      <article class="feature-card">
-        <h3>Feature Two</h3>
-        <p>Explain why customers can’t live without this amazing tool.</p>
-      </article>
-      <article class="feature-card">
-        <h3>Feature Three</h3>
-        <p>Showcase another key offering that sets you apart from the crowd.</p>
-      </article>
-    </div>
-  </section>
+  </header>
+  <!-- HEADER + HERO END -->
 
-  <!-- PRICING SECTION -->
-  <section id="pricing" class="pricing">
-    <div class="section-header">
-      <h2>Flexible Pricing</h2>
-      <p>Choose a plan that suits your needs.</p>
-    </div>
-    <div class="pricing-cards">
-      <article class="pricing-card">
-        <h3>Basic</h3>
-        <p class="price">$9/mo</p>
-        <ul>
-          <li>Core Features</li>
-          <li>Email Support</li>
-          <li>5 Projects</li>
-        </ul>
-        <a href="#cta" class="btn-primary">Get Basic</a>
-      </article>
-      <article class="pricing-card">
-        <h3>Pro</h3>
-        <p class="price">$29/mo</p>
-        <ul>
-          <li>All Basic Features</li>
-          <li>Premium Support</li>
-          <li>Unlimited Projects</li>
-        </ul>
-        <a href="#cta" class="btn-primary">Go Pro</a>
-      </article>
-      <article class="pricing-card">
-        <h3>Enterprise</h3>
-        <p class="price">Contact Us</p>
-        <ul>
-          <li>Custom Solutions</li>
-          <li>Dedicated Manager</li>
-          <li>Full Support</li>
-        </ul>
-        <a href="#cta" class="btn-primary">Contact Sales</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section id="contact" class="contact">
-    <div class="section-header">
-      <h2>Get In Touch</h2>
-      <p>We’d love to hear from you.</p>
-    </div>
-    <form class="contact-form">
-      <input type="text" placeholder="Your Name" required />
-      <input type="email" placeholder="Your Email" required />
-      <textarea placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="btn-primary">Send Message</button>
-    </form>
-  </section>
-
-  <!-- CALL-TO-ACTION -->
-  <section id="cta" class="call-to-action">
-    <h2>Ready to Upgrade?</h2>
-    <p>Let’s take your business to the next level.</p>
-    <a href="#contact" class="btn-secondary">Contact Us Today</a>
-  </section>
-
-  <!-- FOOTER -->
+  <!-- (OPTIONAL) FOOTER EXAMPLE -->
   <footer>
-    <p>&copy; <span id="current-year"></span> MyBrand. All rights reserved.</p>
+    <p>&copy; <span id="current-year"></span> Apollo Data Analytics</p>
   </footer>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+  <!-- (OPTIONAL) TINY SCRIPT TO SET CURRENT YEAR -->
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
