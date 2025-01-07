@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <title>Apollo Data Analytics</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- 
     All styling is in this <style> block for simplicity.
-    In a real project, you might move this to a separate style.css file.
+    You can move it to a separate style.css if you prefer.
   -->
   <style>
     /*********************************
@@ -15,7 +15,7 @@
     *********************************/
     :root {
       --brand-color: #5b21b6;       /* Purple example */
-      --brand-hover: #6d28d9;       /* Slightly lighter purple */
+      --brand-hover: #6d28d9;       /* Slightly lighter purple for hover */
       --secondary-color: #0070f3;   /* Accent color (e.g., for "Client Login") */
       --text-color: #fff;           /* For hero text on dark background */
       --nav-bg: rgba(255,255,255,0.9); /* Navbar background (slightly transparent) */
@@ -26,7 +26,7 @@
           rgba(109, 40, 217, 0.7)
         );
       --hero-bg-image: url('https://via.placeholder.com/1600x900');
-      /* Replace with your own hero background image. */
+      /* Replace with your own hero background image if desired */
     }
 
     /*********************************
@@ -60,8 +60,8 @@
       color: var(--text-color);
 
       /* 
-        Add extra bottom space to accommodate the angled shape 
-        and the wave layers.
+        Add extra bottom space to accommodate 
+        the angled shape and wave layers.
       */
       padding-bottom: 6rem;
 
@@ -216,6 +216,30 @@
     }
 
     /*********************************
+      MAIN CONTENT SECTIONS
+      (PLACEHOLDERS TO RESTORE YOUR OLD CONTENT)
+    *********************************/
+    main {
+      margin: 0 auto;
+      padding: 3rem 2rem;
+      max-width: 1100px; 
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .section-content {
+      text-align: center;
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+
+    /*********************************
       FOOTER (Optional)
     *********************************/
     footer {
@@ -227,20 +251,20 @@
   </style>
 </head>
 <body>
+
   <!-- HEADER + HERO START -->
   <header class="header-hero">
     <!-- NAVIGATION / TOP BAR -->
     <nav class="navbar">
       <div class="logo">
-        <!-- Replace with your actual brand/logo -->
+        <!-- Replace with your actual brand/logo if you want -->
         <a href="#">APOLLO</a>
         <span>Data Analytics</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
         <!-- "Client Login" Button -->
         <li>
           <a href="#" class="btn-secondary">Client Login</a>
@@ -265,6 +289,47 @@
     </div>
   </header>
   <!-- HEADER + HERO END -->
+
+
+  <!-- MAIN CONTENT (PLACEHOLDER FOR YOUR RESTORED SECTIONS) -->
+  <main>
+    <!-- FEATURES SECTION -->
+    <section id="features">
+      <h2 class="section-title">Features</h2>
+      <div class="section-content">
+        <!-- 
+          REPLACE THIS PLACEHOLDER 
+          with the content you had for "Features" 
+          or remove if you don't need it.
+        -->
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat. Vestibulum sodales nulla non ornare interdum.</p>
+      </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section id="pricing">
+      <h2 class="section-title">Pricing</h2>
+      <div class="section-content">
+        <!-- 
+          REPLACE THIS PLACEHOLDER
+          with the content you had for "Pricing."
+        -->
+        <p>Choose a plan that fits your business. We offer flexible solutions for startups and enterprises alike.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <h2 class="section-title">Contact Us</h2>
+      <div class="section-content">
+        <!-- 
+          REPLACE THIS PLACEHOLDER 
+          with your contact form or info.
+        -->
+        <p>Have questions? Reach out at <strong>info@apollodata.com</strong> or fill out our form below.</p>
+      </div>
+    </section>
+  </main>
 
   <!-- (OPTIONAL) FOOTER EXAMPLE -->
   <footer>
